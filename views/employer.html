@@ -1,0 +1,163 @@
+<div class="header" ng-include="'views/nav.html'"></div>
+<div class="content">
+    <div class="alert alert-danger animated bounceInDown" ng-if="!currentUser.telephone" role="alert">
+        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+            Your registration information has not completed yet please fill <a
+            ng-href="#/userInfo/{{currentUser.regUser}}" class="alert-link">your information</a>
+    </div>
+
+
+    <div class="projectList col-lg-12" ng-show="(currentUser.telephone)">
+        <div class="col-lg-3 animated bounceInDown" style="padding-right: 0;padding-left: 20px"
+             ng-repeat="(key,project) in projects">
+            <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>{{project.name}}</div>
+                <div class="panel-body">
+                    <h4><span class="glyphicon glyphicon-info-sign"></span>  Project info :</h4>
+                    <ul>
+                        <li>Employee <span class="badge" style="font-size: 8px;">
+                            <span ng-if="project.employeeCount>0"> {{project.employeeCount}} </span>
+                            <span ng-if="project.employeeCount==null">No one has been assigned</span>
+                            <span ng-if="(project.executiveCount==0)">No one has been assigned</span>
+                        </span></li>
+                       <li>project executive<span class="badge" style="font-size: 8px;">
+                            <span ng-if="project.executiveCount>0"> {{project.executiveCount}} </span>
+                            <span ng-if="(project.executiveCount==null)">No one has been assigned</span>
+                            <span ng-if="(project.executiveCount==0)">No one has been assigned</span>
+                        </span></li>
+                        <li>Accountant<span class="badge" style="font-size: 8px;">
+                            <span ng-if="project.accountantCount>0"> {{project.accountantCount}} </span>
+                            <span ng-if="project.accountantCount==0">No one has been assigned</span>
+                            <span ng-if="project.accountantCount==null">No one has been been assigned</span>
+                        </span></li>
+
+                        <li style="color: seagreen;">Estimated Budget<span> £ {{project.cost | currency:'':0 }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom-left col-lg-12"
+                     style="background-color: #f6f6f6;padding: 2px 14px;border-top:1px solid #f0f0f0; font-size: 10px">
+
+                    <div class="col-lg-6">
+                        <small>Due : {{project.endDate | date:'dd-MM-yyyy'}}</small>
+                    </div>
+                    <div class="col-lg-6">
+                        <small>Start : {{project.startDate | date:'dd-MM-yyyy'}}</small>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="panel-footer">
+                    <div class="text-center">
+                        <a class="btn btn-sm btn-warning" ng-href="#/rollCall/{{ currentUser.regUser }}/{{ project.$id }}" title="Roll-call"><span
+                                class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+                        <a class="btn btn-sm btn-primary"
+                           ng-href="#/userManagement/{{ currentUser.regUser }}/{{ project.$id }}"
+                           title="Personnel Management"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                        <button class="btn btn-sm btn-danger" ng-click="deleteProject(key)" title="Delete Project"><span
+                                class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                        <!--<a class="btn btn-sm btn-success" ng-href="#/checkin/{{ currentUser.regUser }}/{{ project.$id }}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>-->
+                        <!--<a class="btn btn-sm btn-primary" ng-show="meeting.checkin" ng-href="#/checkin/{{ currentUser.regUser }}/{{ meeting.$id }}/checkinList"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+
+    <div class="addProject animated" ng-show="(currentUser.telephone)"
+         ng-class="hiddenClass ? 'bounceOutDownn' : 'bounceInDown'"
+         style="background-color: white; padding: 50px;border-radius: 5px">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-12">
+                    <h4 style="margin-top: 4px;font-family: sans-bold, tahoma, serif">Adding new project</h4>
+                    <h6 style="color: #777;margin-top: 16px;">Please fill the following form</h6>
+                </div>
+                <div class="clear"></div>
+                <div class="page-header">
+                </div>
+
+                <form class="input-group col-lg-12" name="projectForm" novalidate ng-submit="addProject()">
+                    <!-- input Project Cost -->
+                    <div class="col-lg-6" style="margin-bottom: 25px;margin-top: 10px;position: relative">
+                        <small class="alert alert-danger animate-show"
+                               ng-show="projectForm.inputProjectCost.$invalid && projectForm.inputProjectCost.$touched">
+                            Please enter the amount
+                        </small>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon"
+                                  style="border-left: 1px solid #cbcbcb;border-right: 1px solid #cbcbcb;font-family: sans-bold, tahoma, serif">Cost :</span>
+                            <input type="number" name="inputProjectCost" class="form-control"
+                                   placeholder="Cost"
+                                   ng-model="project.cost" ng-required="true">
+                            <span class="input-group-addon" style="border-left: 1px solid #cbcbcb;">£ {{project.cost | currency:'':0}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- input ProjectName -->
+                    <div class="col-lg-6" style="margin-bottom: 25px;margin-top: 10px;position: relative">
+                        <small class="alert alert-danger animate-show"
+                               ng-show="projectForm.inputProjectName.$invalid && projectForm.inputProjectName.$touched">
+                        Please enter the project name
+                        </small>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon" id="inputProjectName"
+                                  style="border-right: 1px solid #cbcbcb;border-left: 1px solid #cbcbcb;font-family: sans-bold, tahoma, serif">Projcet name :</span>
+                            <input type="text" name="inputProjectName" class="form-control"
+                                   placeholder="Project name" aria-describedby="inputProjectName"
+                                   ng-model="project.name" ng-required="true">
+                        </div>
+                    </div>
+
+                    <!-- input Project due Date -->
+                    <div class="col-lg-6" style="position: relative;margin-bottom: 8px">
+                        <small class="alert alert-danger animate-show"
+                               ng-show="projectForm.inputEndDate.$invalid && projectForm.inputEndDate.$touched">
+                            Please enter the due date.
+                        </small>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon" id="inputEndDate"
+                                  style="border-left: 1px solid #cbcbcb;border-right: 1px solid #cbcbcb;font-family: sans-bold, tahoma, serif">Due date</span>
+                            <input type="date" class="form-control" name="inputEndDate" aria-describedby="inputEndDate"
+                                   ng-model="project.endDate" min="2014-01-01" max="2018-12-31" ng-required="true">
+                        </div>
+                    </div>
+                    <!-- input Project Start Date -->
+                    <div class="col-lg-6" style="position: relative ;margin-bottom: 8px">
+                        <small class="alert alert-danger animate-show"
+                               ng-show="projectForm.inputStartDate.$invalid && projectForm.inputStartDate.$touched">
+                            Please enter the start date.
+                        </small>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon" id="inputStartDate"
+                                  style="border-left: 1px solid #cbcbcb;border-right: 1px solid #cbcbcb;font-family: sans-bold, tahoma, serif">Start date:</span>
+                            <input type="date" class="form-control" name="inputStartDate"
+                                   aria-describedby="inputStartDate"
+                                   ng-model="project.startDate" min="2014-01-01" max="2016-12-31" ng-required="true">
+                        </div>
+                    </div>
+
+                    <!-- button Submit -->
+                    <button type="submit" class="btn btn-group-lg btn-success btn-register" style="margin: 15px;"
+                            ng-class="{'load': dataLoading}"
+                            ng-disabled="projectForm.$invalid">
+                        <span>Add</span>
+
+                        <div ng-if="dataLoading" class="spinner">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+
+</div>

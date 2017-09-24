@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a ng-href="#/" class="navbar-brand">
+                <img src="images/logo.png" alt="Greenworld" >
+            </a>
+            <div class="name" ng-if="currentUser" ng-class="{ 'withImage' : currentUser.image }">
+                <a ng-href="#/userInfo/{{currentUser.regUser}}">
+                    <img ng-if="currentUser.image" ng-src="{{currentUser.image}}" alt="{{currentUser.name}}">
+                     <small>Hi !</small>  {{currentUser.name + ' '}}
+                </a>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" ng-controller="RegisterController">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a ng-href="#/"><span class="glyphicon glyphicon-home" aria-hidden="true" style="margin-right:2px;"></span>Dashboard</a></li>
+                <li ng-show="currentUser.roleId==1"><a ng-href="#/"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Projects<span class="badge" style="background-color: #d8524e; margin-left:3px;">{{howManyProjects}}</span></a></li>
+                <li><a ng-href="#/userInfo/{{currentUser.regUser}}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Profile</a></li>
+                <li ng-show="currentUser"><a href="#/login" ng-click="logout()" class="text-danger"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Log out</a></li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

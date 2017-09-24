@@ -1,0 +1,21 @@
+<div class="header" ng-include="'views/nav.html'"></div>
+
+<div class="calender col-lg-12 animated zoomInDown">
+    <div class="header">
+        <div class="pawl">
+
+        </div>
+        <h5>Project calender <small> {{projectName}}</small></h5>
+    </div>
+
+
+    <div class="dayBox">
+
+        <div class="day" ng-repeat="day in days">
+            <small>{{day | date:'dd-MM-yyyy' }}</small>
+        </div>
+    </div>
+
+</div>
+
+

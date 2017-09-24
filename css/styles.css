@@ -1,0 +1,861 @@
+body {
+  background-color: #3c3c3c;
+  direction: ltr;
+  padding-top: 100px;
+  font-family: sans, tahoma;
+}
+@font-face {
+  font-family: 'sans';
+  src: url('../fonts/sans.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'sans-bold';
+  src: url('../fonts/sans-bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+.clear {
+  clear: both;
+}
+.sweet-alert {
+  font-family: sans, tahoma;
+}
+.navbar-default {
+  background-color: #285746;
+  border-color: #112023;
+}
+.navbar-default .glyphicon {
+  margin-left: 3px;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #ffffff;
+  font-size: 12px;
+}
+.navbar-inverse .name {
+  float: right;
+  font-size: 12px;
+  margin-top: 16px;
+}
+.navbar-inverse .name.withImage {
+  margin-top: 11px;
+}
+.navbar-inverse .name a {
+  color: #fff;
+  text-decoration: none;
+}
+.navbar-inverse .name a img {
+  width: 29px;
+  border-radius: 2em;
+  margin-left: 5px;
+}
+.navbar-inverse .navbar-header {
+  padding: 0 15px;
+}
+.navbar-inverse .navbar-header .navbar-brand {
+  color: #ffffff;
+  font-size: 12px;
+  background: #122023;
+  margin-left: 15px;
+}
+.navbar-inverse .navbar-header .navbar-brand img {
+  width: 35px;
+  margin-top: -8px;
+}
+.login {
+  max-width: 830px;
+  padding: 15px;
+  margin:  auto;
+}
+.login .green-world {
+  position: relative;
+}
+.login .green-world img {
+  width: 300px;
+}
+.login .green-world .sky-1 {
+  position: absolute;
+  left: -23px;
+  top: 159px;
+  width: 39%;
+}
+.login .green-world .sky-2 {
+  position: absolute;
+  right: 31px;
+  top: 143px;
+  width: 39%;
+  -webkit-transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+  -moz-transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+  -ms-transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+  -o-transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+  transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+}
+.login .green-world .sky-2.enable {
+  right: 51px;
+  top: 135px;
+}
+.login .form-signin {
+  max-width: 400px;
+  padding: 15px;
+  margin: 35px auto;
+}
+.login .form-signin h2 {
+  color: white;
+  font-size: 22px;
+  font-family: sans-bold, tahoma;
+}
+.login .form-signin h6 {
+  color: white;
+  font-size: 11px;
+}
+.login .form-signin .form-signin-heading,
+.login .form-signin .checkbox {
+  margin-bottom: 15px;
+}
+.login .form-signin .form-signin-heading .animate-show,
+.login .form-signin .checkbox .animate-show {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.login .form-signin .form-signin-heading .animate-show.greenText,
+.login .form-signin .checkbox .animate-show.greenText {
+  color: #5cb85c;
+}
+.login .form-signin .checkbox {
+  font-weight: normal;
+}
+.login .form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 12px;
+}
+.login .form-signin .form-control:focus {
+  z-index: 2;
+}
+.login .form-signin .btn-login {
+  float: left;
+  padding: 8px 20px;
+}
+.login .form-signin .alert-danger {
+  padding: 7px 15px 5px;
+  line-height: 9px;
+  font-size: 9px;
+  background-color: #f3d4d4;
+}
+.login .form-signin input.ng-invalid.ng-touched {
+  border: 1px solid #EAAEAE;
+}
+.login .form-signin input.ng-valid.ng-touched {
+  border: 2px solid #72C144;
+  background-color: #f0f9e6 !important;
+  -webkit-box-shadow: 0 0 0 1000px #f0f9e6 inset;
+}
+.login .form-signin .animate-show {
+  opacity: 1;
+}
+.login .form-signin .animate-show.ng-hide-add,
+.login .form-signin .animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+.login .form-signin .animate-show.ng-hide {
+  opacity: 0;
+}
+.login .form-signin .load span {
+  display: none;
+}
+.register {
+  max-width: 830px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.register .green-world {
+  position: relative;
+}
+.register .green-world img {
+  width: 300px;
+}
+.register .green-world .sky-1 {
+  position: absolute;
+  left: -23px;
+  top: 159px;
+  width: 39%;
+}
+.register .green-world .sky-2 {
+  position: absolute;
+  right: 31px;
+  top: 143px;
+  width: 39%;
+  -webkit-transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+  -moz-transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+  -ms-transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+  -o-transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+  transition: all 2s cubic-bezier(0.56, 0.42, 0.64, 1.12);
+}
+.register .green-world .sky-2.enable {
+  right: 51px;
+  top: 135px;
+}
+.register .form-signin {
+  max-width: 400px;
+  padding: 15px;
+  margin: -25px auto;
+}
+.register .form-signin h2 {
+  color: white;
+  font-size: 22px;
+  font-family: sans-bold, tahoma;
+}
+.register .form-signin h6 {
+  color: white;
+  font-size: 11px;
+}
+.register .form-signin .form-signin-heading,
+.register .form-signin .checkbox {
+  margin-bottom: 15px;
+}
+.register .form-signin .form-signin-heading .animate-show,
+.register .form-signin .checkbox .animate-show {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.register .form-signin .form-signin-heading .animate-show.greenText,
+.register .form-signin .checkbox .animate-show.greenText {
+  color: #5cb85c;
+}
+.register .form-signin .checkbox {
+  font-weight: normal;
+}
+.register .form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 12px;
+}
+.register .form-signin .form-control:focus {
+  z-index: 2;
+}
+.register .form-signin .btn-register {
+  float: left;
+  padding: 8px 20px;
+}
+.register .form-signin .btn-sm {
+  font-size: 9px;
+  width: 100%;
+}
+.register .form-signin .alert-danger {
+  padding: 7px 15px 5px;
+  line-height: 9px;
+  font-size: 9px;
+  background-color: #f3d4d4;
+}
+.register .form-signin input.ng-invalid.ng-touched {
+  border: 1px solid #EAAEAE;
+}
+.register .form-signin input.ng-valid.ng-touched {
+  border: 2px solid #72C144;
+  background-color: #f0f9e6 !important;
+  -webkit-box-shadow: 0 0 0 1000px #f0f9e6 inset;
+}
+.register .form-signin .animate-show {
+  opacity: 1;
+}
+.register .form-signin .animate-show.ng-hide-add,
+.register .form-signin .animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+.register .form-signin .animate-show.ng-hide {
+  opacity: 0;
+}
+.register .form-signin .load span {
+  display: none;
+}
+.userInfo {
+  background: #fff;
+  margin: -20px auto 0;
+  width: 55%;
+  position: relative;
+  display: flex;
+  border-radius: 5px;
+}
+.userInfo form {
+  margin: 0 auto;
+}
+.userInfo form h3 {
+  font-size: 15px;
+  font-family: sans-bold, tahoma;
+}
+.userInfo form .pull-right {
+  margin-left: 15px;
+}
+.userInfo .form-userInfo {
+  max-width: 400px;
+  padding: 15px;
+  margin: 25px auto;
+}
+.userInfo .form-userInfo h2 {
+  color: white;
+  font-size: 22px;
+  font-family: sans-bold, tahoma;
+}
+.userInfo .form-userInfo h6 {
+  color: white;
+  font-size: 11px;
+}
+.userInfo .form-userInfo .form-signin-heading,
+.userInfo .form-userInfo .checkbox {
+  margin-bottom: 30px;
+}
+.userInfo .form-userInfo .form-signin-heading .animate-show,
+.userInfo .form-userInfo .checkbox .animate-show {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.userInfo .form-userInfo .form-signin-heading .animate-show.greenText,
+.userInfo .form-userInfo .checkbox .animate-show.greenText {
+  color: #5cb85c;
+}
+.userInfo .form-userInfo .checkbox {
+  font-weight: normal;
+}
+.userInfo .form-userInfo .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 12px;
+}
+.userInfo .form-userInfo .form-control:focus {
+  z-index: 2;
+}
+.userInfo .form-userInfo .btn-login {
+  float: left;
+  padding: 8px 20px;
+}
+.userInfo .form-userInfo .alert-danger {
+  padding: 7px 15px 5px;
+  line-height: 9px;
+  font-size: 9px;
+  background-color: #f3d4d4;
+}
+.userInfo .form-userInfo input.ng-invalid.ng-touched {
+  border: 1px solid #EAAEAE;
+}
+.userInfo .form-userInfo input.ng-valid.ng-touched {
+  border: 2px solid #72C144;
+  background-color: #f0f9e6 !important;
+  -webkit-box-shadow: 0 0 0 1000px #f0f9e6 inset;
+}
+.userInfo .form-userInfo input.ng-fill,
+.userInfo .form-userInfo textarea.ng-fill {
+  border: 2px solid #72C144;
+  background-color: #f0f9e6 !important;
+  -webkit-box-shadow: 0 0 0 1000px #f0f9e6 inset;
+}
+.userInfo .form-userInfo .animate-show {
+  opacity: 1;
+}
+.userInfo .form-userInfo .animate-show.ng-hide-add,
+.userInfo .form-userInfo .animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+.userInfo .form-userInfo .animate-show.ng-hide {
+  opacity: 0;
+}
+.userInfo .form-userInfo .load span {
+  display: none;
+}
+.userInfo .radio-inline {
+  font-size: 11px;
+  margin-left: 25px;
+}
+.userInfo .radio-inline input[type=checkbox],
+.userInfo .radio-inline input[type=radio] {
+  margin: 0px -12px 0 -20px;
+  background: none;
+  border: none;
+  box-shadow: none !important;
+}
+.userInfo textarea {
+  line-height: 27px;
+}
+.userInfo .form-inline {
+  float: left;
+  font-size: 11px;
+  margin-bottom: 20px;
+  font-family: sans-bold, tahoma;
+}
+.content {
+  margin-top: -30px;
+}
+.content .alert {
+  font-size: 12px;
+}
+.content .alert span {
+  font-size: 15px;
+  top: 3px;
+  margin-left: 6px;
+}
+.content .alert strong {
+  font-family: sans-bold, tahoma;
+}
+.content .addProject h4 {
+  margin-top: 4px;
+  font-family: sans-bold, tahoma, serif;
+}
+.content .addProject h6 {
+  color: #777;
+  margin-top: 16px;
+}
+.content .addProject .page-header {
+  margin-top: 0;
+}
+.content .addProject .alert {
+  font-size: 9px;
+  padding: 5px;
+  position: absolute;
+  top: -19px;
+}
+.content .addProject input {
+  font-size: 11px;
+}
+.content .addProject input.ng-invalid.ng-touched {
+  border: 1px solid #EAAEAE;
+}
+.content .addProject input.ng-valid.ng-touched {
+  border: 1px solid #72C144;
+  background-color: #f0f9e6 !important;
+  -webkit-box-shadow: 0 0 0 1000px #f0f9e6 inset;
+}
+.content .addProject .load span {
+  display: none;
+}
+.content .projectList {
+  padding-right: 0;
+}
+.content .projectList .panel-heading {
+  font-size: 12px;
+  text-align: center;
+}
+.content .projectList .panel-body {
+  font-size: 10px;
+}
+.content .projectList .panel-body h4 {
+  font-size: 10px;
+  font-family: sans-bold, tahoma;
+  margin-bottom: 12px;
+}
+.content .projectList .panel-body ul {
+  padding-right: 10px;
+  margin-bottom: 0;
+}
+.content .projectList .panel-body ul li {
+  list-style: none;
+  margin-bottom: 9px;
+  color: #5f5f5f;
+}
+.content .projectList .panel-body ul li .badge {
+  font-size: 9px;
+  margin-left: 9px;
+}
+.userManagement {
+  background: #fff;
+  margin: -20px auto 0;
+  width: 55%;
+  position: relative;
+  display: flex;
+  border-radius: 5px;
+}
+.userManagement form {
+  margin: 0 auto;
+}
+.userManagement form h3 {
+  font-size: 15px;
+  font-family: sans-bold, tahoma;
+}
+.userManagement form .pull-right {
+  margin-left: 15px;
+}
+.userManagement .form-userInfo {
+  max-width: 400px;
+  padding: 10px;
+  margin: 25px auto;
+}
+.userManagement .form-userInfo h2 {
+  color: white;
+  font-size: 22px;
+  font-family: sans-bold, tahoma;
+}
+.userManagement .form-userInfo h6 {
+  color: white;
+  font-size: 11px;
+}
+.userManagement .form-userInfo .form-signin-heading,
+.userManagement .form-userInfo .checkbox {
+  margin-bottom: 15px;
+}
+.userManagement .form-userInfo .form-signin-heading .animate-show,
+.userManagement .form-userInfo .checkbox .animate-show {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.userManagement .form-userInfo .form-signin-heading .animate-show.greenText,
+.userManagement .form-userInfo .checkbox .animate-show.greenText {
+  color: #5cb85c;
+}
+.userManagement .form-userInfo .checkbox {
+  font-weight: normal;
+}
+.userManagement .form-userInfo .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 12px;
+}
+.userManagement .form-userInfo .form-control:focus {
+  z-index: 2;
+}
+.userManagement .form-userInfo .btn-login {
+  float: left;
+  padding: 8px 20px;
+}
+.userManagement .form-userInfo .alert-danger {
+  padding: 7px 15px 5px;
+  line-height: 9px;
+  font-size: 9px;
+  background-color: #f3d4d4;
+}
+.userManagement .form-userInfo input.ng-invalid.ng-touched {
+  border: 1px solid #EAAEAE;
+}
+.userManagement .form-userInfo input.ng-valid.ng-touched {
+  border: 2px solid #72C144;
+  background-color: #f0f9e6 !important;
+  -webkit-box-shadow: 0 0 0 1000px #f0f9e6 inset;
+}
+.userManagement .form-userInfo input.ng-fill,
+.userManagement .form-userInfo textarea.ng-fill {
+  border: 2px solid #72C144;
+  background-color: #f0f9e6 !important;
+  -webkit-box-shadow: 0 0 0 1000px #f0f9e6 inset;
+}
+.userManagement .form-userInfo .animate-show {
+  opacity: 1;
+}
+.userManagement .form-userInfo .animate-show.ng-hide-add,
+.userManagement .form-userInfo .animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+.userManagement .form-userInfo .animate-show.ng-hide {
+  opacity: 0;
+}
+.userManagement .form-userInfo .load span {
+  display: none;
+}
+.userManagement .radio-inline {
+  font-size: 11px;
+}
+.userManagement .radio-inline input[type=checkbox],
+.userManagement .radio-inline input[type=radio] {
+  margin: 0px -12px 0 -20px;
+  background: none;
+  border: none;
+  box-shadow: none !important;
+}
+.userManagement textarea {
+  line-height: 27px;
+}
+.userManagement .form-inline {
+  float: left;
+  margin-left: 12px;
+  font-size: 11px;
+  margin-bottom: 20px;
+  font-family: sans-bold, tahoma;
+}
+.userManagement select {
+  height: 39px !important;
+}
+.personalList {
+  background-color: #fff;
+  padding: 1px 30px;
+  margin-bottom: 45px;
+  border-radius: 4px;
+  position: relative;
+}
+.personalList table {
+  font-size: 11px;
+}
+.personalList table .animate-container {
+  background: white;
+  border: 1px solid black;
+  list-style: none;
+  margin: 0;
+  padding: 0 10px;
+}
+.personalList table .animate-repeat {
+  line-height: 30px;
+  list-style: none;
+  box-sizing: border-box;
+}
+.personalList table .animate-repeat.ng-move,
+.personalList table .animate-repeat.ng-enter,
+.personalList table .animate-repeat.ng-leave {
+  transition: all linear 0.5s;
+}
+.personalList table .animate-repeat.ng-leave.ng-leave-active,
+.personalList table .animate-repeat.ng-move,
+.personalList table .animate-repeat.ng-enter {
+  opacity: 0;
+  max-height: 0;
+}
+.personalList table .animate-repeat.ng-leave,
+.personalList table .animate-repeat.ng-move.ng-move-active,
+.personalList table .animate-repeat.ng-enter.ng-enter-active {
+  opacity: 1;
+  max-height: 30px;
+}
+.personalList table tr {
+  text-align: center;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.personalList table tr:hover {
+  background-color: #fbfbfb;
+}
+.personalList table tr th {
+  text-align: center;
+}
+.personalList table tr th button .sortorder:after {
+  content: '\25b2';
+}
+.personalList table tr th button .sortorder.reverse:after {
+  content: '\25bc';
+}
+.personalList table tr td {
+  vertical-align: middle;
+}
+.personalList .buttonTop button {
+  font-size: 11px;
+  position: absolute;
+  left: 30px;
+  top: -15px;
+}
+.edit-userManagement .modal-header h4,
+.edit-userManagementAccountant .modal-header h4,
+.edit-userManagementEmployee .modal-header h4,
+.add-User .modal-header h4 {
+  font-size: 12px;
+  font-family: sans-bold, tahoma;
+}
+.edit-userManagement .modal-body .form-control,
+.edit-userManagementAccountant .modal-body .form-control,
+.edit-userManagementEmployee .modal-body .form-control,
+.add-User .modal-body .form-control {
+  font-size: 11px;
+}
+.edit-userManagement .modal-body .radio-inline,
+.edit-userManagementAccountant .modal-body .radio-inline,
+.edit-userManagementEmployee .modal-body .radio-inline,
+.add-User .modal-body .radio-inline {
+  font-size: 11px;
+  margin-right: 10px;
+}
+.edit-userManagement .modal-body .radio-inline input[type=checkbox],
+.edit-userManagementAccountant .modal-body .radio-inline input[type=checkbox],
+.edit-userManagementEmployee .modal-body .radio-inline input[type=checkbox],
+.add-User .modal-body .radio-inline input[type=checkbox],
+.edit-userManagement .modal-body .radio-inline input[type=radio],
+.edit-userManagementAccountant .modal-body .radio-inline input[type=radio],
+.edit-userManagementEmployee .modal-body .radio-inline input[type=radio],
+.add-User .modal-body .radio-inline input[type=radio] {
+  margin: 0px 25px 0 40px;
+  background: none;
+  border: none;
+  box-shadow: none !important;
+}
+.edit-userManagement .modal-body textarea,
+.edit-userManagementAccountant .modal-body textarea,
+.edit-userManagementEmployee .modal-body textarea,
+.add-User .modal-body textarea {
+  line-height: 27px;
+}
+.edit-userManagement .modal-body .form-inline,
+.edit-userManagementAccountant .modal-body .form-inline,
+.edit-userManagementEmployee .modal-body .form-inline,
+.add-User .modal-body .form-inline {
+  float: left;
+  margin-left: 12px;
+  font-size: 11px;
+  margin-bottom: 20px;
+  font-family: sans-bold, tahoma;
+}
+.edit-userManagement .modal-body select,
+.edit-userManagementAccountant .modal-body select,
+.edit-userManagementEmployee .modal-body select,
+.add-User .modal-body select {
+  height: 39px !important;
+}
+.edit-userManagement .modal-body .alert-danger,
+.edit-userManagementAccountant .modal-body .alert-danger,
+.edit-userManagementEmployee .modal-body .alert-danger,
+.add-User .modal-body .alert-danger {
+  padding: 7px 15px 5px;
+  line-height: 9px;
+  font-size: 9px;
+  background-color: #f3d4d4;
+}
+.edit-userManagement .modal-body input.ng-invalid.ng-touched,
+.edit-userManagementAccountant .modal-body input.ng-invalid.ng-touched,
+.edit-userManagementEmployee .modal-body input.ng-invalid.ng-touched,
+.add-User .modal-body input.ng-invalid.ng-touched {
+  border: 1px solid #EAAEAE;
+}
+.calender {
+  background-color: #fff;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  min-height: 100%;
+  border-radius: 20px;
+}
+.calender .header {
+  background-color: #aa4147;
+  width: 100%;
+  height: 70px;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+.calender .header .pawl {
+  background: url("../images/calendar.svg");
+  width: 520px;
+  height: 19px;
+  position: absolute;
+  top: -10px;
+  right: 28%;
+}
+.calender .header h5 {
+  margin: 0;
+  text-align: center;
+  line-height: 70px;
+  color: #fff;
+  font-size: 17px;
+}
+.calender .header h5 small {
+  color: #fff;
+}
+.calender .dayBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 40px 53px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.calender .dayBox:hover .day {
+  opacity: 0.5;
+}
+.calender .dayBox:hover .day:hover {
+  opacity: 1;
+}
+.calender .dayBox .day {
+  display: flex;
+  flex-basis: calc(14.28571429%);
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 30px;
+  min-width: 0;
+  min-height: 20%;
+  border: 1px solid #e8e8e8;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.spinner {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+.spinner > div {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.spinner .bounce3 {
+  -webkit-animation-delay: -0.1s;
+  animation-delay: -0.1s;
+}
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

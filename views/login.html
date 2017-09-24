@@ -1,0 +1,53 @@
+<div class="login" id="loginAnimate">
+
+    <div class="col-lg-4 pull-right green-world animated bounceInDown">
+        <img src="images/greenWorld.png" alt="Greenworld">
+        <img src="images/sky-1.png" class="sky-1" alt="Greenworldز">
+        <img src="images/sky-2.png" class="sky-2" alt="Greenworld">
+    </div>
+    <!-- .right -->
+
+    <div class="col-lg-8 pull-left animated bounceInUp" style="position: relative">
+        <form class="form-signin form-group form" name="loginForm" novalidate ng-submit="login()">
+            <h2 class="form-signin-heading">Green
+                <span class="animate-show" ng-class="{ 'greenText' : loginForm.$valid }" >Environment</span>
+            </h2>
+            <h6>Please fill the following form</h6>
+            <br>
+            <!-- input Email -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="loginForm.inputEmail.$invalid && loginForm.inputEmail.$touched">Please check your input
+            </small>
+            <input type="email" name="inputEmail" class="form-control form-group"
+                   placeholder="Email"
+                   ng-required="true" ng-model="user.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+
+
+            <!-- input Password -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="loginForm.inputPassword.$invalid && loginForm.inputPassword.$touched">Please check your password
+            </small>
+            <input type="password" name="inputPassword" class="form-control form-group"
+                   placeholder="Password with the minimum of 6 characters"
+                   ng-minlength="6" ng-model="user.password" ng-required="true">
+
+
+            <!-- Button Submit -->
+            <button class="btn btn-group-lg btn-success btn-login" type="submit"
+                    ng-class="{'load': dataLoading}"
+                    ng-disabled="loginForm.$invalid">
+                <span>Login</span>
+                <div ng-if="dataLoading" class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </button>
+            <a class="btn btn-group-lg btn-default btn-login" href="#/reg-employer" >
+                <span>Register</span>
+            </a>
+        </form>
+    </div>
+    <!-- .left -->
+
+</div>

@@ -1,0 +1,75 @@
+<div class="register">
+
+    <div class="col-lg-4 green-world animated bounceInDown">
+        <img src="images/greenWorld.png" alt="جهان سبز">
+        <img src="images/sky-1.png" class="sky-1" alt="جهان سبز">
+        <img src="images/sky-2.png" class="sky-2" alt="جهان سبز">
+    </div> <!-- .right -->
+
+
+    <div class="col-lg-8 pull-left animated bounceInUp">
+        <form name="registerForm" class="form-signin form-group form" novalidate ng-submit="register()">
+            <h2>Employer registration</h2>
+            <h6>Please fill the form</h6>
+            <a class="btn btn-sm btn-primary" ng-href="#/login">Already signed up? Log in !</a>
+
+            <div class="clear"></div>
+            <br>
+
+
+            <!-- input Name -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="registerForm.inputName.$invalid && registerForm.inputName.$touched">Please enter your full name
+            </small>
+            <input type="text" name="inputName" class="form-control form-group"
+                   placeholder="Full Name"
+                   ng-model="user.name" ng-required="true">
+
+
+            <!-- input National Code -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="registerForm.inputNationalCode.$invalid && registerForm.inputNationalCode.$touched">Please enter your National ID
+
+            </small>
+            <input type="number" name="inputNationalCode" class="form-control form-group"
+                   placeholder="National ID"
+                   ng-model="user.nationalCode" ng-required="true" ng-minlength="10" ng-maxlength="10">
+
+
+            <!-- input Email -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="registerForm.inputEmail.$invalid && registerForm.inputEmail.$touched">Please enter your email
+            </small>
+            <input type="email" name="inputEmail" class="form-control form-group"
+                   placeholder="Email"
+                   ng-model="user.email" ng-required="true" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+
+
+            <!-- input Password -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="registerForm.inputPassword.$invalid && registerForm.inputPassword.$touched">Please choose a valid password (more than 6 char !)
+            </small>
+            <input type="password" name="inputPassword" class="form-control form-group"
+                   placeholder="Password (6 charis the minimum)"
+                   ng-minlength="6"
+                   ng-model="user.password" ng-required="true">
+
+            <input type="hidden" name="inputRoleId" class="form-control form-group"
+                   ng-init="user.roleId=1;" ng-value="user.roleId" ng-model="user.roleId">
+
+
+            <!-- button Submit -->
+            <button type="submit" class="btn btn-group-lg btn-success btn-register"
+                    ng-class="{'load': dataLoading}"
+                    ng-disabled="registerForm.$invalid">
+                <span>Register</span>
+                <div ng-if="dataLoading" class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </button>
+
+        </form>
+    </div><!-- .left -->
+</div>

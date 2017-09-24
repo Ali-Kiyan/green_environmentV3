@@ -1,0 +1,945 @@
+<div class="header" ng-include="'views/nav.html'"></div>
+
+<div class="personalList" ng-hide="executives.length == 0 && employees.length == 0 && accountants.length ==0 ">
+    <div class="buttonTop">
+        <button class="btn btn-success animated" id="add-personal" data-toggle="modal" data-target=".add-User"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Adding new personnel</button>
+    </div>
+
+    <div class="form-group col-sm-5" style="padding: 20px 0 0;margin-bottom: 0;">
+        <label for="search" class="col-sm-2 control-label input-sm" style="float:left;margin-right: 19px;">Search</label>
+        <div class="col-sm-9 input-group">
+            <input type="text" class="form-control input-sm" id="search" placeholder="Please enter the full name"
+                   ng-model="querySearch.name">
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="animated bounceInUp">
+        <table class="executive table table-bordered animate-container" ng-if="!(executives.length == 0)" >
+            <div class="page-header" ng-if="!(executives.length == 0)">
+                <h5>Executives list</h5>
+            </div>
+            <colgroup>
+                <col style="width: 20px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 120px">
+                <col style="width: 100px">
+            </colgroup>
+            <tr ng-hide="(results.length ==0)" class="active">
+                <th>Image</th>
+                <th>Full Name</th>
+                <th>National ID</th>
+                <th>Email</th>
+                <th>Cell</th>
+                <th>Gender</th>
+                <th>Marital state</th>
+                <th>work record
+                    <button class="ng-cloak" ng-click="sortBy('workRecord','exe')" ng-show="accountants.length>1"><span class="sortorder" ng-show="propertyName === 'workRecord'" ng-class="{reverse: reverseExe}"></span></button>
+                </th>
+                <th>Post</th>
+                <th>Edit/Remove</th>
+
+            </tr>
+            <tr class="animate-repeat" ng-repeat="(key,executive) in executives | filter:querySearch as results">
+                <td>
+                    <img ng-show="executive.image" ng-src="{{executive.image}}" alt="{{executive.name}}" width="30" height="30">
+                    <img ng-hide="executive.image" src="images/userImage.jpeg" alt="{{executive.name}}" width="30" height="30">
+                </td>
+                <td>{{executive.name}}</td>
+                <td>{{executive.nationalCode}}</td>
+                <td>{{executive.email}}</td>
+                <td>{{executive.telephone}}</td>
+                <td>{{executive.sex == 'male' ? 'male' : 'female'}}</td>
+                <td>{{executive.maritalState == 'single' ? 'single' : 'married'}}</td>
+                <td>{{executive.workRecord}}</td>
+                <td ng-switch="executive.roleId">
+                    <span ng-switch-when="2">Executive</span>
+                    <span ng-switch-when="3">Accountant</span>
+                    <span ng-switch-when="4">employee</span>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-info" ng-click="copyExecutive(key)" title="Edit User"
+                            data-toggle="modal" data-target=".edit-userManagement">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-sm btn-danger" ng-click="deleteExecutive(key)" title="Remove User">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                </td>
+            </tr>
+
+        </table>
+
+    </div> <!-- executive list  -->
+
+    <div class="animated bounceInUp">
+        <table class="accountant table table-bordered animate-container" ng-if="!(accountants.length == 0)">
+            <div class="page-header" ng-if="!(accountants.length == 0)">
+                <h5>Accountants lists</h5>
+            </div>
+            <colgroup>
+                <col style="width: 20px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 120px">
+                <col style="width: 100px">
+            </colgroup>
+            <tr ng-hide="(results.length ==0)" class="active">
+                <th>Image</th>
+                <th>Full Name</th>
+                <th>National ID</th>
+                <th>Email</th>
+                <th>Cell</th>
+                <th>Gender</th>
+                <th>Marital state</th>
+                <th>Work Record
+                    <button class="ng-cloak" ng-click="sortBy('workRecord','acc')" ng-show="accountants.length>1"><span class="sortorder" ng-show="propertyName === 'workRecord'" ng-class="{reverse: reverseAcc}"></span></button>
+                </th>
+                <th>Post</th>
+                <th>Edit/Remove</th>
+
+            </tr>
+            <tr class="animate-repeat" ng-repeat="(key,accountant) in accountants | filter:querySearch as results">
+                <td>
+                    <img ng-show="accountant.image" ng-src="{{accountant.image}}" alt="{{accountant.name}}" width="30" height="30">
+                    <img ng-hide="accountant.image" src="images/userImage.jpeg" alt="{{accountant.name}}" width="30" height="30">
+                </td>
+                <td>{{accountant.name}}</td>
+                <td>{{accountant.nationalCode}}</td>
+                <td>{{accountant.email}}</td>
+                <td>{{accountant.telephone}}</td>
+                <td>{{accountant.sex == 'male' ? 'male' : 'female'}}</td>
+                <td>{{accountant.maritalState == 'single' ? 'single' : 'married'}}</td>
+                <td>{{accountant.workRecord}}</td>
+                <td ng-switch="accountant.roleId">
+                    <span ng-switch-when="2">Executive</span>
+                    <span ng-switch-when="3">Accountant</span>
+                    <span ng-switch-when="4">Employee</span>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-info" ng-click="copyAccountant(key)" title="Edit User"
+                            data-toggle="modal" data-target=".edit-userManagementAccountant">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-sm btn-danger" ng-click="deleteAccountant(key)" title="Remove User">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div> <!-- accountant list  -->
+
+    <div class="animated bounceInUp">
+        <table class="employee table table-bordered animate-container " ng-if="!(employees.length == 0)">
+            <div class="page-header" ng-if="!(employees.length == 0)">
+                <h5>Employees List</h5>
+            </div>
+            <colgroup>
+                <col style="width: 20px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 100px">
+                <col style="width: 120px">
+                <col style="width: 100px">
+            </colgroup>
+            <tr ng-hide="(results.length ==0)" class="active">
+                <th>Image</th>
+                <th>Full Name</th>
+                <th>National ID</th>
+                <th>Email</th>
+                <th>Cell</th>
+                <th>Gender</th>
+                <th>Marital state</th>
+                <th>work record
+                    <button class="ng-cloak" ng-click="sortBy('workRecord','emp')" ng-show="employees.length>1"><span class="sortorder" ng-show="propertyName === 'workRecord'" ng-class="{reverse: reverseEmp}"></span></button>
+                </th>
+                <th>Post</th>
+                <th>Edit/Remove</th>
+
+            </tr>
+            <tr class="animate-repeat" ng-repeat="(key,employee) in employees | filter:querySearch as results"  >
+                <td>
+                    <img ng-show="employee.image" ng-src="{{employee.image}}" alt="{{employee.name}}" width="30" height="30">
+                    <img ng-hide="employee.image" src="images/userImage.jpeg" alt="{{employee.name}}" width="30" height="30">
+                </td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.nationalCode}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.telephone}}</td>
+                <td>{{employee.sex == 'male' ? 'male' : 'female'}}</td>
+                <td>{{employee.maritalState == 'single' ? 'single' : 'married'}}</td>
+                <td >{{employee.workRecord}}</td>
+                <td ng-switch="employee.roleId">
+                    <span ng-switch-when="2">Executive</span>
+                    <span ng-switch-when="3">Accountant</span>
+                    <span ng-switch-when="4">Employee</span>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-info" ng-click="copyEmployee(key)" title="Edit User"
+                            data-toggle="modal" data-target=".edit-userManagementEmployee">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-sm btn-danger" ng-click="deleteEmployee(key)" title="Remove User">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div> <!-- employee list  -->
+
+</div>
+
+<div class="userManagement animated bounceInRight" ng-show="(executives.length == 0) && (accountants.length == 0) && (employees.length == 0)">
+    <form name="userForm" class="form-userInfo form-group form" novalidate ng-submit="addUser()"
+          style="max-width: 520px;">
+        <h3 style="text-align: center">Adding Personnel
+            <small style="color:#d8524e">{{projectName}}</small>
+        </h3>
+
+        <h5 style="text-align: center; color: #8c8c8c; font-size: 9px; margin-bottom: 10px;">Please Fill the Form</h5>
+
+        <br>
+
+        <div class="pull-left">
+
+
+            <!-- input Name -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputName.$invalid && userForm.inputName.$touched">Please Enter the Full Name
+            </small>
+            <input type="text" name="inputName" class="form-control form-group"
+                   placeholder="Full Name"
+                   ng-model="user.name" ng-required="true">
+
+
+            <!-- input National Code -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputNationalCode.$invalid && userForm.inputNationalCode.$touched">Please Enter the national ID
+            </small>
+            <input type="number" name="inputNationalCode" class="form-control form-group"
+                   placeholder="National ID"
+                   ng-model="user.nationalCode" ng-required="true"
+                   ng-minlength="8" ng-maxlength="10">
+
+            <!-- input Email -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputEmail.$invalid && userForm.inputEmail.$touched">Please Enter the email address
+            </small>
+            <input type="email" name="inputEmail" class="form-control form-group"
+                   placeholder="Email"
+                   ng-model="user.email" ng-required="true"
+                   ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+
+
+            <!-- input Telephone -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputTel.$invalid && userForm.inputTel.$touched">Please Enter cellphone number
+            </small>
+            <input type="number" name="inputTel" class="form-control form-group"
+                   placeholder="Cell"
+                   ng-model="user.telephone" ng-required="true"
+                   ng-maxlength="11">
+
+
+            <!-- input Sex -->
+            <div class="form-inline">Gender :</div>
+            <label class="radio-inline">
+                <input type="radio" name="inputSex" ng-model="user.sex" ng-required="true" value="male"> Male
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inputSex" ng-model="user.sex" ng-required="true" value="female">Female
+            </label>
+
+            <div class="clear"></div>
+
+
+            <!-- input Martial State -->
+            <div class="form-inline">Marital state</div>
+            <label class="radio-inline">
+                <input type="radio" name="inputMartialState" ng-model="user.maritalState" ng-required="true"
+                       value="single">single
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inputMartialState" ng-model="user.maritalState" ng-required="true"
+                       value="married">married
+            </label>
+
+            <div class="clear"></div>
+
+
+            <!-- input Number Of Children -->
+            <div ng-if="user.maritalState== 'married'">
+                <small class="alert alert-danger animate-show"
+                       ng-show="userForm.inputChild.$invalid && userForm.inputChild.$touched">Please enter the number of children
+                </small>
+                <input type="number" name="inputChild" class="form-control form-group"
+                       placeholder="Number of children"
+                       ng-model="user.childCount"
+                       ng-required="true" ng-maxlength="2">
+            </div>
+
+
+            <!-- input Account Number -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputAccountNumber.$invalid && userForm.inputAccountNumber.$touched">Please enter account number
+            </small>
+            <input type="number" name="inputAccountNumber" class="form-control form-group"
+                   placeholder="Account number"
+                   ng-model="user.accountNumber" ng-required="true"
+                   ng-maxlength="16" ng-minlength="16">
+
+
+            <!-- input Working Record -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputWorkRecord.$invalid && userForm.inputWorkRecord.$touched">Please enter work record
+            </small>
+            <input type="number" name="inputWorkRecord" class="form-control form-group"
+                   placeholder="work record"
+                   ng-model="user.workRecord" ng-required="true"
+                   ng-maxlength="2">
+
+
+            <!-- input Address -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputAddress.$invalid && userForm.inputAddress.$touched">Please enter the address
+            </small>
+            <textarea name="inputAddress" class="form-control form-group" placeholder="Address"
+                      ng-model="user.address"
+                      ng-required="true"></textarea>
+
+
+            <!-- input Password -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputPassword.$invalid && userForm.inputPassword.$touched">Please enter the password
+            </small>
+            <input type="password" name="inputPassword" class="form-control form-group"
+                   placeholder="Password (6 char minimum)"
+                   ng-minlength="6"
+                   ng-model="user.password" ng-required="true">
+
+            <!-- input Role -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.selectRole.$invalid && userForm.selectRole.$touched">Please enter post
+            </small>
+            <select class="form-control form-group" name="selectRole" ng-model="user.roleId" ng-required="true">
+                <option value>post</option>
+                <option value="4">Employee</option>
+                <option value="2">Executive</option>
+                <option value="3">Accountant</option>
+            </select>
+
+
+            <!-- input Image -->
+            <input type="file" name="inputFile" id="inputFile" class="form-group" accept="image/*"
+                   ng-model="user.img" valid-file>
+
+            <button type="submit" class="btn btn-group-lg btn-success" ng-class="{'load': dataLoading}"
+                    ng-disabled="userForm.$invalid">
+                <span>Save</span>
+
+                <div ng-if="dataLoading" class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </button>
+        </div>
+
+    </form>
+</div> <!-- Add User -->
+
+<div class="modal fade edit-userManagement" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Information <span>{{eUser.name}}</span></h4>
+            </div>
+            <div class="modal-body">
+                <form name="eUserForm" class="form-userInfo form-group form" novalidate ng-submit="editExecutive()"
+                      style="max-width: 520px;">
+
+                    <h5 class="animated bounceInTop" ng-show="msg" style="text-align: center; color: forestgreen; font-size: 9px; margin-bottom: 5px;font-family: sans-bold, tahoma, serif">{{msg}}</h5>
+                    <h5 style="text-align: center; color: #8c8c8c; font-size: 9px; margin-bottom: 10px;">Please edit the information carefully</h5>
+
+                    <br>
+
+                    <div>
+
+
+                        <!-- input Name -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputName.$invalid && eUserForm.inputName.$touched">Please enter the full name
+                        </small>
+                        <input type="text" name="inputName" class="form-control form-group"
+                               placeholder="Full Name"
+                               ng-model="eUser.name" ng-required="true">
+
+
+                        <!-- input National Code -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputNationalCode.$invalid && eUserForm.inputNationalCode.$touched">Please enter the national ID
+                        </small>
+                        <input type="number" name="inputNationalCode" class="form-control form-group"
+                               placeholder="National ID"
+                               ng-model="eUser.nationalCode" ng-required="true"
+                               ng-minlength="8" ng-maxlength="10">
+
+
+                        <!-- input Telephone -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputTel.$invalid && eUserForm.inputTel.$touched">Please enter cellphone number
+                            .
+                        </small>
+                        <input type="number" name="inputTel" class="form-control form-group"
+                               placeholder="Cell phone number"
+                               ng-model="eUser.telephone" ng-required="true"
+                               ng-maxlength="11">
+
+
+                        <!-- input Sex -->
+                        <div class="form-inline">Gender :</div>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputSex" ng-model="eUser.sex" ng-required="true" value="male">Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputSex" ng-model="eUser.sex" ng-required="true" value="female">Female
+                        </label>
+
+                        <div class="clear"></div>
+
+
+                        <!-- input Martial State -->
+                        <div class="form-inline">Marital state :</div>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputMartialState" ng-model="eUser.maritalState" ng-required="true"
+                                   value="single">single
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputMartialState" ng-model="eUser.maritalState" ng-required="true"
+                                   value="married">married
+                        </label>
+
+                        <div class="clear"></div>
+
+
+                        <!-- input Number Of Children -->
+                        <div ng-if="eUser.maritalState== 'married'">
+                            <small class="alert alert-danger animate-show"
+                                   ng-show="eUserForm.inputChild.$invalid && eUserForm.inputChild.$touched">Please enter the number of children
+                            </small>
+                            <input type="number" name="inputChild" class="form-control form-group"
+                                   placeholder="Number of children"
+                                   ng-model="eUser.childCount"
+                                   ng-required="true" ng-maxlength="2">
+                        </div>
+
+
+                        <!-- input Account Number -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputAccountNumber.$invalid && eUserForm.inputAccountNumber.$touched"> Please enter account number
+                        </small>
+                        <input type="number" name="inputAccountNumber" class="form-control form-group"
+                               placeholder="Account Number"
+                               ng-model="eUser.accountNumber" ng-required="true"
+                               ng-maxlength="16" ng-minlength="16">
+
+
+                        <!-- input Working Record -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputWorkRecord.$invalid && eUserForm.inputWorkRecord.$touched">Please enter the work record
+                        </small>
+                        <input type="number" name="inputWorkRecord" class="form-control form-group"
+                               placeholder="Work record"
+                               ng-model="eUser.workRecord" ng-required="true"
+                               ng-maxlength="2">
+
+
+                        <!-- input Address -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputAddress.$invalid && eUserForm.inputAddress.$touched">Please enter the address
+                        </small>
+            <textarea name="inputAddress" class="form-control form-group" placeholder="Personnel address"
+                      ng-model="eUser.address"
+                      ng-required="true"></textarea>
+
+
+                        <!-- input Image -->
+                        <input type="file" name="inputEditImageExecutive" id="inputEditImageExecutive" class="form-group" accept="image/*"
+                               ng-model="eUser.img" valid-file>
+
+                        <button type="submit" class="btn btn-group-lg btn-info" ng-class="{'load': dataLoading}"
+                                ng-disabled="eUserForm.$invalid">
+                            <span>Edit</span>
+
+                            <div ng-if="dataLoading" class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div> <!-- Executive Edit  -->
+
+<div class="modal fade edit-userManagementAccountant" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Information <span> {{eUser.name}}</span></h4>
+            </div>
+            <div class="modal-body">
+                <form name="eUserForm" class="form-userInfo form-group form" novalidate ng-submit="editAccountant()"
+                      style="max-width: 520px;">
+
+                    <h5 class="animated bounceInTop" ng-show="msg" style="text-align: center; color: forestgreen; font-size: 9px; margin-bottom: 5px;font-family: sans-bold, tahoma, serif">{{msg}}</h5>
+                    <h5 style="text-align: center; color: #8c8c8c; font-size: 9px; margin-bottom: 10px;">Please edit the information carefully</h5>
+
+                    <br>
+
+                    <div>
+
+
+                        <!-- input Name -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputName.$invalid && eUserForm.inputName.$touched">Please enter the full name
+                        </small>
+                        <input type="text" name="inputName" class="form-control form-group"
+                               placeholder="Full Name"
+                               ng-model="eUser.name" ng-required="true">
+
+
+                        <!-- input National Code -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputNationalCode.$invalid && eUserForm.inputNationalCode.$touched">Please enter the national ID
+                        </small>
+                        <input type="number" name="inputNationalCode" class="form-control form-group"
+                               placeholder="National ID"
+                               ng-model="eUser.nationalCode" ng-required="true"
+                               ng-minlength="8" ng-maxlength="10">
+
+
+                        <!-- input Telephone -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputTel.$invalid && eUserForm.inputTel.$touched">Plaese enter cell phone number
+                        </small>
+                        <input type="number" name="inputTel" class="form-control form-group"
+                               placeholder="Cell Phone number"
+                               ng-model="eUser.telephone" ng-required="true"
+                               ng-maxlength="11">
+
+
+                        <!-- input Sex -->
+                        <div class="form-inline">Gender :</div>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputSex" ng-model="eUser.sex" ng-required="true" value="male"> Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputSex" ng-model="eUser.sex" ng-required="true" value="female"> Female
+                        </label>
+
+                        <div class="clear"></div>
+
+
+                        <!-- input Martial State -->
+                        <div class="form-inline">Marital state :</div>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputMartialState" ng-model="eUser.maritalState" ng-required="true"
+                                   value="single">single
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputMartialState" ng-model="eUser.maritalState" ng-required="true"
+                                   value="married">married
+                        </label>
+
+                        <div class="clear"></div>
+
+
+                        <!-- input Number Of Children -->
+                        <div ng-if="eUser.maritalState== 'married'">
+                            <small class="alert alert-danger animate-show"
+                                   ng-show="eUserForm.inputChild.$invalid && eUserForm.inputChild.$touched">Please enter the number of children
+                            </small>
+                            <input type="number" name="inputChild" class="form-control form-group"
+                                   placeholder="Number of children"
+                                   ng-model="eUser.childCount"
+                                   ng-required="true" ng-maxlength="2">
+                        </div>
+
+
+                        <!-- input Account Number -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputAccountNumber.$invalid && eUserForm.inputAccountNumber.$touched">Please enter account number
+                        </small>
+                        <input type="number" name="inputAccountNumber" class="form-control form-group"
+                               placeholder="Account Number"
+                               ng-model="eUser.accountNumber" ng-required="true"
+                               ng-maxlength="16" ng-minlength="16">
+
+
+                        <!-- input Working Record -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputWorkRecord.$invalid && eUserForm.inputWorkRecord.$touched">Please enter the working record
+                        </small>
+                        <input type="number" name="inputWorkRecord" class="form-control form-group"
+                               placeholder="Working record"
+                               ng-model="eUser.workRecord" ng-required="true"
+                               ng-maxlength="2">
+
+
+                        <!-- input Address -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputAddress.$invalid && eUserForm.inputAddress.$touched">Please enter your address
+                        </small>
+            <textarea name="inputAddress" class="form-control form-group" placeholder="Address"
+                      ng-model="eUser.address"
+                      ng-required="true"></textarea>
+
+
+                        <!-- input Image -->
+                        <input type="file" name="inputEditImageAccountant" id="inputEditImageAccountant" class="form-group" accept="image/*"
+                               ng-model="eUser.img" valid-file>
+
+                        <button type="submit" class="btn btn-group-lg btn-info" ng-class="{'load': dataLoading}"
+                                ng-disabled="eUserForm.$invalid">
+                            <span>Edit</span>
+
+                            <div ng-if="dataLoading" class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div> <!-- Accountant Edit  -->
+
+<div class="modal fade edit-userManagementEmployee" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Information<span>{{eUser.name}}</span></h4>
+            </div>
+            <div class="modal-body">
+                <form name="eUserForm" class="form-userInfo form-group form" novalidate ng-submit="editEmployee()"
+                      style="max-width: 520px;">
+
+                    <h5 class="animated bounceInTop" ng-show="msg" style="text-align: center; color: forestgreen; font-size: 9px; margin-bottom: 5px;font-family: sans-bold, tahoma, serif">{{msg}}</h5>
+                    <h5 style="text-align: center; color: #8c8c8c; font-size: 9px; margin-bottom: 10px;">Please edit the information carefully</h5>
+
+                    <br>
+
+                    <div>
+
+
+                        <!-- input Name -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputName.$invalid && eUserForm.inputName.$touched">Please enter your full name
+                        </small>
+                        <input type="text" name="inputName" class="form-control form-group"
+                               placeholder="Full Name"
+                               ng-model="eUser.name" ng-required="true">
+
+
+                        <!-- input National Code -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputNationalCode.$invalid && eUserForm.inputNationalCode.$touched">Please enter your national ID
+                        </small>
+                        <input type="number" name="inputNationalCode" class="form-control form-group"
+                               placeholder="National ID"
+                               ng-model="eUser.nationalCode" ng-required="true"
+                               ng-minlength="8" ng-maxlength="10">
+
+
+                        <!-- input Telephone -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputTel.$invalid && eUserForm.inputTel.$touched">Please enter your cellphone number
+                        </small>
+                        <input type="number" name="inputTel" class="form-control form-group"
+                               placeholder="Cell Number"
+                               ng-model="eUser.telephone" ng-required="true"
+                               ng-maxlength="11">
+
+
+                        <!-- input Sex -->
+                        <div class="form-inline">Gender :</div>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputSex" ng-model="eUser.sex" ng-required="true" value="male"> male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputSex" ng-model="eUser.sex" ng-required="true" value="female"> female
+                        </label>
+
+                        <div class="clear"></div>
+
+
+                        <!-- input Martial State -->
+                        <div class="form-inline">Marital state:</div>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputMartialState" ng-model="eUser.maritalState" ng-required="true"
+                                   value="single">Single
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputMartialState" ng-model="eUser.maritalState" ng-required="true"
+                                   value="married">Married
+                        </label>
+
+                        <div class="clear"></div>
+
+
+                        <!-- input Number Of Children -->
+                        <div ng-if="eUser.maritalState== 'married'">
+                            <small class="alert alert-danger animate-show"
+                                   ng-show="eUserForm.inputChild.$invalid && eUserForm.inputChild.$touched">Please enter your number of children
+                            </small>
+                            <input type="number" name="inputChild" class="form-control form-group"
+                                   placeholder="Number of children"
+                                   ng-model="eUser.childCount"
+                                   ng-required="true" ng-maxlength="2">
+                        </div>
+
+
+                        <!-- input Account Number -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputAccountNumber.$invalid && eUserForm.inputAccountNumber.$touched">Please enter the account number
+                        </small>
+                        <input type="number" name="inputAccountNumber" class="form-control form-group"
+                               placeholder="Account Number"
+                               ng-model="eUser.accountNumber" ng-required="true"
+                               ng-maxlength="16" ng-minlength="16">
+
+
+                        <!-- input Working Record -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputWorkRecord.$invalid && eUserForm.inputWorkRecord.$touched">Please enter your work record
+                        </small>
+                        <input type="number" name="inputWorkRecord" class="form-control form-group"
+                               placeholder="Work Record"
+                               ng-model="eUser.workRecord" ng-required="true"
+                               ng-maxlength="2">
+
+
+                        <!-- input Address -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="eUserForm.inputAddress.$invalid && eUserForm.inputAddress.$touched">Please enter the address
+                        </small>
+            <textarea name="inputAddress" class="form-control form-group" placeholder="Address"
+                      ng-model="eUser.address"
+                      ng-required="true"></textarea>
+
+
+                        <!-- input Image -->
+                        <input type="file" name="inputEditImageEmployee" id="inputEditImageEmployee" class="form-group" accept="image/*"
+                               ng-model="eUser.img" valid-file>
+
+                        <button type="submit" class="btn btn-group-lg btn-info" ng-class="{'load': dataLoading}"
+                                ng-disabled="eUserForm.$invalid">
+                            <span>Save</span>
+
+                            <div ng-if="dataLoading" class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- Employee Edit  -->
+
+<div class="modal fade add-User" ng-show="(executives.length != 0) || (accountants.length != 0) || (employees.length != 0)" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Adding User<small style="margin-right:7px;color:#d8524e">{{projectName}}</small></h4>
+            </div>
+            <div class="modal-body">
+                <form name="userForm" class="form-userInfo form-group form" novalidate ng-submit="addUser()"
+                      style="max-width: 520px;">
+
+
+                    <h5 style="text-align: center; color: #8c8c8c; font-size: 9px; margin-bottom: 10px;">Please fill the form</h5>
+
+                    <br>
+
+                    <div>
+
+
+                        <!-- input Name -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="userForm.inputName.$invalid && userForm.inputName.$touched">Please enter the full name
+                        </small>
+                        <input type="text" name="inputName" class="form-control form-group"
+                               placeholder="Full Name"
+                               ng-model="user.name" ng-required="true">
+
+
+                        <!-- input National Code -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="userForm.inputNationalCode.$invalid && userForm.inputNationalCode.$touched">Please enter your national ID
+                        </small>
+                        <input type="number" name="inputNationalCode" class="form-control form-group"
+                               placeholder="National ID"
+                               ng-model="user.nationalCode" ng-required="true"
+                               ng-minlength="8" ng-maxlength="10">
+
+                        <!-- input Email -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="userForm.inputEmail.$invalid && userForm.inputEmail.$touched">Please enter the email address
+                        </small>
+                        <input type="email" name="inputEmail" class="form-control form-group"
+                               placeholder="Email address"
+                               ng-model="user.email" ng-required="true"
+                               ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+
+
+                        <!-- input Telephone -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="userForm.inputTel.$invalid && userForm.inputTel.$touched">Please enter your cell phone number
+                            .
+                        </small>
+                        <input type="number" name="inputTel" class="form-control form-group"
+                               placeholder="Cellphone number"
+                               ng-model="user.telephone" ng-required="true"
+                               ng-maxlength="11">
+
+
+                        <!-- input Sex -->
+                        <div class="form-inline">Gender :</div>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputSex" ng-model="user.sex" ng-required="true" value="male"> Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputSex" ng-model="user.sex" ng-required="true" value="female">Female
+                        </label>
+
+                        <div class="clear"></div>
+
+
+                        <!-- input Martial State -->
+                        <div class="form-inline">Marital state :</div>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputMartialState" ng-model="user.maritalState" ng-required="true"
+                                   value="single">single
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inputMartialState" ng-model="user.maritalState" ng-required="true"
+                                   value="married">married
+                        </label>
+
+                        <div class="clear"></div>
+
+
+                        <!-- input Number Of Children -->
+                        <div ng-if="user.maritalState== 'married'">
+                            <small class="alert alert-danger animate-show"
+                                   ng-show="userForm.inputChild.$invalid && userForm.inputChild.$touched"> Please enter the number of the children
+                            </small>
+                            <input type="number" name="inputChild" class="form-control form-group"
+                                   placeholder="Number of Children"
+                                   ng-model="user.childCount"
+                                   ng-required="true" ng-maxlength="2">
+                        </div>
+
+
+                        <!-- input Account Number -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="userForm.inputAccountNumber.$invalid && userForm.inputAccountNumber.$touched"> Please enter your account number
+                        </small>
+                        <input type="number" name="inputAccountNumber" class="form-control form-group"
+                               placeholder="Account Number"
+                               ng-model="user.accountNumber" ng-required="true"
+                               ng-maxlength="16" ng-minlength="16">
+
+
+                        <!-- input Working Record -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="userForm.inputWorkRecord.$invalid && userForm.inputWorkRecord.$touched">  Please enter the working record
+                        </small>
+                        <input type="number" name="inputWorkRecord" class="form-control form-group"
+                               placeholder="Working Record"
+                               ng-model="user.workRecord" ng-required="true"
+                               ng-maxlength="2">
+
+
+                        <!-- input Address -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="userForm.inputAddress.$invalid && userForm.inputAddress.$touched">Please enter your address
+                        </small>
+            <textarea name="inputAddress" class="form-control form-group" placeholder="Address."
+                      ng-model="user.address"
+                      ng-required="true"></textarea>
+
+
+                        <!-- input Password -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="userForm.inputPassword.$invalid && userForm.inputPassword.$touched">Please enter the password
+                        </small>
+                        <input type="password" name="inputPassword" class="form-control form-group"
+                               placeholder="Password (6 char minimum)"
+                               ng-minlength="6"
+                               ng-model="user.password" ng-required="true">
+
+                        <!-- input Role -->
+                        <small class="alert alert-danger animate-show"
+                               ng-show="userForm.selectRole.$invalid && userForm.selectRole.$touched">Please enter the post
+                        </small>
+                        <select class="form-control form-group" name="selectRole" ng-model="user.roleId" ng-required="true">
+                            <option value>post</option>
+                            <option value="4">Employee</option>
+                            <option value="2">Executive</option>
+                            <option value="3">Accountant</option>
+                        </select>
+
+
+                        <!-- input Image -->
+                        <input type="file" name="inputFile" id="inputFile" class="form-group" accept="image/*"
+                               ng-model="user.img" valid-file>
+
+                        <button type="submit" class="btn btn-group-lg btn-success" ng-class="{'load': dataLoading}"
+                                ng-disabled="userForm.$invalid">
+                            <span>Save</span>
+
+                            <div ng-if="dataLoading" class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div> <!-- Add User - Modal -->

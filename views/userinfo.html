@@ -1,0 +1,141 @@
+<div class="header" ng-include="'views/nav.html'"></div>
+
+<div class="userInfo animated bounceInDown">
+    <form name="userForm" class="form-userInfo form-group form" novalidate ng-submit="changeInfo()"
+          style="max-width: 520px;">
+        <h3><span class="glyphicon glyphicon-user"></span>Personnel Info -
+            <small>{{ currentUser.name }}</small>
+        </h3>
+
+        <br>
+
+        <div class="pull-left">
+
+
+            <!-- input Name -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputName.$invalid && userForm.inputName.$touched">Please type your full name correctly
+            </small>
+            <input type="text" name="inputName" class="form-control form-group"
+                   ng-class="{'ng-fill' : currentUser.name}" placeholder="Full Name"
+                   ng-model="user.name" ng-required="true">
+
+
+            <!-- input National Code -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputNationalCode.$invalid && userForm.inputNationalCode.$touched">Please type your National ID correctly
+            </small>
+            <input type="number" name="inputNationalCode" class="form-control form-group"
+                   placeholder="National ID"
+                   ng-model="user.nationalCode" ng-class="{'ng-fill' : currentUser.nationalCode}" ng-required="true"
+                   ng-minlength="8" ng-maxlength="10">
+
+
+            <!-- input Telephone -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputTel.$invalid && userForm.inputTel.$touched">Please type your phone number correctly
+            </small>
+            <input type="number" name="inputTel" class="form-control form-group"
+                   placeholder="Cellphone"
+                   ng-model="user.telephone" ng-class="{'ng-fill' : currentUser.telephone}" ng-required="true"
+                   ng-maxlength="11">
+
+
+            <!-- input Sex -->
+            <div class="form-inline">Gender:</div>
+            <label class="radio-inline">
+                <input type="radio" name="inputSex" ng-model="user.sex" ng-required="true" value="male"> Male
+            </label>
+
+            <label class="radio-inline">
+                <input type="radio" name="inputSex" ng-model="user.sex" ng-required="true" value="female"> Female
+            </label>
+
+            <div class="clear"></div>
+
+
+            <!-- input Martial State -->
+            <div class="form-inline">Martial State :</div>
+            <label class="radio-inline">
+                <input type="radio" name="inputMartialState" ng-model="user.maritalState" ng-required="true"
+                       value="single">Single
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inputMartialState" ng-model="user.maritalState" ng-required="true"
+                       value="married">Married
+            </label>
+
+            <div class="clear"></div>
+
+
+            <!-- input Number Of Children -->
+            <div ng-if="user.maritalState== 'married'">
+                <small class="alert alert-danger animate-show"
+                       ng-show="userForm.inputChild.$invalid && userForm.inputChild.$touched">Please type your number of children  correctly
+                </small>
+                <input type="number" name="inputChild" class="form-control form-group"
+                       placeholder="Number of child "
+                       ng-model="user.childCount"
+                       ng-class="{'ng-fill' : currentUser.maritalState == 'married' && currentUser.childCount}"
+                       ng-required="true" ng-maxlength="2">
+            </div>
+
+
+            <!-- input Account Number -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputAccountNumber.$invalid && userForm.inputAccountNumber.$touched">Please type your bank number  correctly
+            </small>
+            <input type="number" name="inputAccountNumber" class="form-control form-group"
+                   placeholder="Bank Number"
+                   ng-model="user.accountNumber" ng-class="{'ng-fill' : currentUser.accountNumber}" ng-required="true"
+                   ng-maxlength="16" ng-minlength="16">
+
+
+            <!-- input Working Record -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputWorkRecord.$invalid && userForm.inputWorkRecord.$touched">Please type your year(s) of work record correctly
+            </small>
+            <input type="number" name="inputWorkRecord" class="form-control form-group"
+                   placeholder="Year(s) of work record"
+                   ng-model="user.workRecord" ng-class="{'ng-fill' : currentUser.workRecord}" ng-required="true"
+                   ng-maxlength="2">
+
+
+            <!-- input Address -->
+            <small class="alert alert-danger animate-show"
+                   ng-show="userForm.inputAddress.$invalid && userForm.inputAddress.$touched">Please type your address correctly
+            </small>
+            <textarea name="inputAddress" class="form-control form-group" placeholder="Address"
+                      ng-model="user.address" ng-class="{'ng-fill' : currentUser.address}"
+                      ng-required="true"></textarea>
+
+
+            <!-- input Image -->
+            <input type="file" name="inputFile" id="inputFile" class="form-group" accept="image/*"
+                   ng-model="user.img" valid-file>
+
+            <button type="submit" class="btn btn-group-lg btn-success" ng-class="{'load': dataLoading}"
+                    ng-disabled="userForm.$invalid">
+                <span>Save changes</span>
+
+                <div ng-if="dataLoading" class="spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </button>
+        </div>
+
+
+        <div class="pull-right">
+            <div ng-show="user.image" style="position: relative">
+                <img ng-show="user.image" ng-src="{{user.image}}" alt="{{user.name}}" width="210px" height="210px">
+                <button class="btn btn-danger btn-sm" ng-click="deleteImage()"
+                        style="position: absolute;bottom: 7px;left: 7px; border-radius: 5em;"><span
+                        class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+            </div>
+            <img ng-hide="user.image" src="images/userImage.jpeg" alt="{{user.name}}" width="195px" height="195px">
+        </div>
+
+    </form>
+</div>
